@@ -1,65 +1,133 @@
-# US Macro Correlation Study (CPI, Unemployment, Interest Rates)
+# US Macro Correlation Analysis (2020–2026)
 
-This project analyzes the relationship between key US macroeconomic variables from 2020 to 2026:
+This project builds a **monthly U.S. macroeconomic dataset** and studies the relationships between:
 
-* Inflation (CPI, monthly percentage change)
-* Unemployment rate
-* Short-term interest rates (Effective Federal Funds Rate)
+* **Inflation (CPI, Monthly % change)**
+* **Unemployment Rate**
+* **Effective Federal Funds Rate (EFFR)**
 
-The goal is not to predict markets, but to understand how macro variables interact over time using clean, well-aligned data.
+The objective is **educational and market-oriented**:
+to demonstrate how macroeconomic data is **cleaned, aligned, and analyzed** in a way that is directly relevant for **Sales & Trading / Macro roles**.
 
-## What the project does
+---
 
-1. Loads official US macroeconomic data from CSV files (FRED)
-2. Filters all series to a common time period
-3. Converts daily interest rate data into monthly averages
-4. Computes monthly inflation from CPI
-5. Aligns all variables on a common monthly timeline
-6. Computes pairwise correlations
-7. Visualizes the results with time series plots and a correlation heatmap
-
-## Data sources
-
-* CPIAUCSL: Consumer Price Index
-* UNRATE: Unemployment Rate
-* EFFR: Effective Federal Funds Rate
-  (Source: Federal Reserve Economic Data – FRED)
-
-## Methodology notes
-
-* Inflation is measured month-over-month, which captures short-term price dynamics.
-* Interest rates are averaged monthly to match the frequency of other macro variables.
-* Correlation is used for descriptive analysis only and does not imply causality.
-
-## Output
-
-Running the script produces:
-
-* Correlation values printed in the terminal
-* A time-series plot of inflation, unemployment, and interest rates
-* A correlation heatmap summarizing relationships between variables
-
-## How to run
-
-Install dependencies:
+## 📁 Project Structure
 
 ```
-pip install pandas matplotlib seaborn
+US-Macro-Correlation/
+│
+├── US Macro Correlation Analysis (2020–2026).ipynb
+├── data/
+│   ├── CPIAUCSL.csv
+│   ├── UNRATE.csv
+│   └── EFFR.csv
+└── README.md
 ```
 
-Run:
+All data files must be placed inside the **`data/` folder**.
+No absolute paths are used, so the project runs on **any machine**.
+
+---
+
+## 📊 Data Sources
+
+All macroeconomic series are downloaded from **FRED (Federal Reserve Economic Data)**:
+
+* **CPIAUCSL** – Consumer Price Index
+* **UNRATE** – U.S. Unemployment Rate
+* **EFFR** – Effective Federal Funds Rate (daily)
+
+---
+
+## ⚙️ Methodology
+
+### 1️⃣ Data loading
+
+* CSV files are loaded using **relative paths**
+* Dates are parsed automatically
+
+### 2️⃣ Frequency alignment
+
+* CPI and unemployment are monthly
+* EFFR is **daily → converted to monthly average**
+* All series are aligned using a **monthly period index**
+
+### 3️⃣ Inflation calculation
+
+* Inflation is computed as **Month-over-Month % change**:
+
+[
+\text{Inflation}*{t} = 100 \times \left(\frac{CPI_t}{CPI*{t-1}} - 1\right)
+]
+
+(MoM is intentionally used to capture **short-term market sensitivity**)
+
+### 4️⃣ Correlation analysis
+
+Pearson correlations are computed between:
+
+* Inflation ↔ Unemployment
+* Inflation ↔ Interest Rates
+* Unemployment ↔ Interest Rates
+
+### 5️⃣ Visualization
+
+* Time-series plot of all three variables
+* Correlation heatmap for quick interpretation
+
+---
+
+## ▶️ How to Run
+
+### 1) Install dependencies
+
+```bash
+pip install pandas matplotlib seaborn jupyter
+```
+
+### 2) Launch Jupyter Notebook
+
+```bash
+jupyter notebook
+```
+
+### 3) Open and run
+
+Open:
 
 ```
-python main.py
+US Macro Correlation Analysis (2020–2026).ipynb
 ```
 
-## Limitations & extensions
+Run all cells from top to bottom.
 
-This project is descriptive. Possible extensions include:
+---
 
-* Using inflation YoY instead of MoM
-* Studying lagged relationships
-* Defining macro regimes (tightening vs easing)
-* Linking macro variables to asset returns
+## 📌 Key Takeaways
 
-This project is intended as a learning exercise for understanding macroeconomic data handling and interpretation in a markets context.
+* Shows **real-world macro data handling**, not toy examples
+* Focuses on **frequency alignment**, a common pitfall in macro analysis
+* Highlights how inflation, labor markets, and monetary policy interact
+* Directly relevant for **Sales & Trading**, **Macro Research**, and **Rates / FX desks**
+
+---
+
+## ⚠️ Disclaimer
+
+This project is **descriptive** and **educational**.
+Correlation does not imply causation and should not be used as an investment signal.
+
+---
+
+## 🚀 Possible Extensions
+
+* Inflation YoY vs MoM comparison
+* Lagged correlations (rates leading inflation)
+* Regime analysis (high vs low inflation periods)
+* Add asset returns (SP500, FX, Rates futures)
+
+---
+
+**Author:**
+Youssef Triki – M1 Finance
+Target roles: Sales & Trading / Macro / Markets
