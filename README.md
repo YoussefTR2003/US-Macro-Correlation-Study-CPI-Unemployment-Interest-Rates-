@@ -56,9 +56,8 @@ All macroeconomic series are downloaded from **FRED (Federal Reserve Economic Da
 
 * Inflation is computed as **Month-over-Month % change**:
 
-\[
-\text{Inflation}_t = 100 \times \left( \frac{CPI_t}{CPI_{t-1}} - 1 \right)
-\]
+Inflationₜ = 100 × (CPIₜ / CPIₜ₋₁ − 1)
+
 
 
 (MoM is intentionally used to capture **short-term market sensitivity**)
